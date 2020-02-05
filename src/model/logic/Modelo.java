@@ -2,6 +2,8 @@ package model.logic;
 
 import model.data_structures.ArregloDinamico;
 import model.data_structures.IArregloDinamico;
+import model.data_structures.IListaEncadenada;
+import model.data_structures.ListaEncadenada;
 
 /**
  * Definicion del modelo del mundo
@@ -11,23 +13,22 @@ public class Modelo {
 	/**
 	 * Atributos del modelo del mundo
 	 */
-	private IArregloDinamico datos;
+	private IListaEncadenada<Comparendo> datos;
+	
 	
 	/**
-	 * Constructor del modelo del mundo con capacidad predefinida
+	 * Constructor del modelo del mundo
 	 */
 	public Modelo()
 	{
-		datos = new ArregloDinamico(7);
+		datos = new ListaEncadenada<Comparendo>();
 	}
 	
-	/**
-	 * Constructor del modelo del mundo con capacidad dada
-	 * @param tamano
-	 */
-	public Modelo(int capacidad)
+	public void cargarDatos(String ruta)
 	{
-		datos = new ArregloDinamico(capacidad);
+		JsonGsonProcessing objetoJsonGson = new JsonGsonProcessing( ruta);
+		objetoJsonGson.iniciarLectura(objetoJsonGson, datos);
+		datos = objetoJsonGson.darLista();
 	}
 	
 	/**
@@ -40,32 +41,32 @@ public class Modelo {
 	}
 
 	/**
-	 * Requerimiento de agregar dato
-	 * @param dato
-	 */
-	public void agregar(String dato)
-	{	
-		datos.agregar(dato);
-	}
-	
-	/**
 	 * Requerimiento buscar dato
 	 * @param dato Dato a buscar
 	 * @return dato encontrado
 	 */
-	public String buscar(String dato)
+	public Comparendo buscar(Integer dato)
 	{
-		return datos.buscar(dato);
+		Comparendo nuevo = new Comparendo(dato, "",0, 0);
+		return datos.buscar(nuevo);
 	}
 	
 	/**
-	 * Requerimiento eliminar dato
-	 * @param dato Dato a eliminar
-	 * @return dato eliminado
+	 * Retorna el ultimo comparendo en agregarse a la lista
+	 * @return ultimo comparendo agregado
 	 */
-	public String eliminar(String dato)
+	public Comparendo darUltimo()
 	{
-		return datos.eliminar(dato);
+		return datos.darUltimo().darElemento();
+	}
+	
+	/**
+	 * Retorna el primer comparendo en ser agregado a la lista
+	 * @return primer comparendo agregado
+	 */
+	public Comparendo darPrimero()
+	{
+		return datos.darPrimero().darElemento();
 	}
 
 

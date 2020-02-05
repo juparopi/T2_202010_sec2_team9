@@ -2,6 +2,11 @@ package controller;
 
 import java.util.Scanner;
 
+import javax.swing.JFileChooser;
+
+import java.io.*;
+
+import model.logic.Comparendo;
 import model.logic.Modelo;
 import view.View;
 
@@ -27,8 +32,8 @@ public class Controller {
 	{
 		Scanner lector = new Scanner(System.in);
 		boolean fin = false;
-		String dato = "";
-		String respuesta = "";
+		Integer dato = null;
+		Integer respuesta = null;
 
 		while( !fin ){
 			view.printMenu();
@@ -36,66 +41,32 @@ public class Controller {
 			int option = lector.nextInt();
 			switch(option){
 				case 1:
-					view.printMessage("--------- \nCrear Arreglo \nDar capacidad inicial del arreglo: ");
-				    int capacidad = lector.nextInt();
-				    modelo = new Modelo(capacidad); 
-				    view.printMessage("Arreglo Dinamico creado");
-				    view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
+					view.printMessage("--------- \nSe realiza la carga de los comparendos: ");
+					String ruta = "./data/comparendos_dei_2018.geojson";
+					modelo.cargarDatos(ruta);
+				    view.printMessage("\nLista creada....");
+				    view.printMessage("\nNumero actual de comparendos " + modelo.darTamano());
+				    Comparendo prim = modelo.darPrimero();
+				    view.printMessage("\nPrimer comparendo es: \nOnjectId ="+prim.darObjectId()+", localidad = "+prim.darLocalidad()+", longuitud = "+prim.darLonguitud()+", latitud = "+prim.darLatitud());
+				    Comparendo ult = modelo.darUltimo();
+				    view.printMessage("\nEL ultimo comparendo es: \nOnjectId ="+ult.darObjectId()+", localidad = "+ult.darLocalidad()+", longuitud = "+ult.darLonguitud()+", latitud = "+ult.darLatitud()+"\n------------");
 					break;
 
 				case 2:
-					view.printMessage("--------- \nDar cadena (simple) a ingresar: ");
-					dato = lector.next();
-					modelo.agregar(dato);
-					view.printMessage("Dato agregado");
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;
-
-				case 3:
-					view.printMessage("--------- \nDar cadena (simple) a buscar: ");
-					dato = lector.next();
-					respuesta = modelo.buscar(dato);
-					if ( respuesta != null)
+					view.printMessage("--------- \nDar ObjectID que desea buscar: ");
+					dato = lector.nextInt();
+					Comparendo comp = modelo.buscar(dato);
+					if(comp == null)
 					{
-						view.printMessage("Dato encontrado: "+ respuesta);
+						view.printMessage("\nNo existe un comparendo con ese ObjectId\n---------");
 					}
 					else
 					{
-						view.printMessage("Dato NO encontrado");
+						view.printMessage("\nComparendo encontrado:\nOnjectId ="+comp.darObjectId()+", localidad = "+comp.darLocalidad()+", longuitud = "+comp.darLonguitud()+", latitud = "+comp.darLatitud()+"\n---------");
 					}
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
+											
 					break;
 
-				case 4:
-					view.printMessage("--------- \nDar cadena (simple) a eliminar: ");
-					dato = lector.next();
-					respuesta = modelo.eliminar(dato);
-					if ( respuesta != null)
-					{
-						view.printMessage("Dato eliminado "+ respuesta);
-					}
-					else
-					{
-						view.printMessage("Dato NO eliminado");							
-					}
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;
-
-				case 5: 
-					view.printMessage("--------- \nContenido del Arreglo: ");
-					view.printModelo(modelo);
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;	
-					
-				case 6: 
-					view.printMessage("--------- \n Hasta pronto !! \n---------"); 
-					lector.close();
-					fin = true;
-					break;	
-
-				default: 
-					view.printMessage("--------- \n Opcion Invalida !! \n---------");
-					break;
 			}
 		}
 		
