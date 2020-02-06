@@ -17,6 +17,8 @@ public class  ListaEncadenada<T extends Comparable<T>> implements IListaEncadena
          * Primer nodo
          */
         private NodoLista<T> primero;
+        
+        private NodoLista<T> ultimo;
 
         /**
          * Construir una lista
@@ -25,6 +27,7 @@ public class  ListaEncadenada<T extends Comparable<T>> implements IListaEncadena
         {
 			tamano = 0;
 			primero = null;
+			ultimo = null;
         }
         
 		public void agregar( T dato )
@@ -33,15 +36,12 @@ public class  ListaEncadenada<T extends Comparable<T>> implements IListaEncadena
                if(primero == null)
                {
             	   primero = nuevo;
+            	   ultimo = nuevo;
                }
                else
                {
-            	   NodoLista<T> actual = primero;
-            	   while(actual.darSiguiente() != null)
-            	   {
-            		   actual = actual.darSiguiente();
-            	   }
-            	   actual.cambiarSiguiente(nuevo);
+            	   ultimo.cambiarSiguiente(nuevo);
+            	   ultimo = ultimo.darSiguiente();
                }
                tamano++;
        }
@@ -53,15 +53,7 @@ public class  ListaEncadenada<T extends Comparable<T>> implements IListaEncadena
 		
 		public NodoLista<T> darUltimo()
 		{
-			NodoLista<T> rta = primero;
-			if(primero != null)
-			{
-				while(rta.darSiguiente()!=null)
-				{
-					rta = rta.darSiguiente();
-				}
-			}
-			return rta;
+			return ultimo;
 		}
 
 		public int darTamano() 
