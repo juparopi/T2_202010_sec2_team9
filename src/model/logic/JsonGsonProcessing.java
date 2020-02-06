@@ -45,6 +45,8 @@ public class JsonGsonProcessing
 	private int objectId;					// valor de OBJECTID (NUMBER)
 	private boolean identificarLocalidad;   // identificacion propiedad LOCALIDAD
 	private String localidad;				// valor de LOCALIDAD (STRING)
+	
+	
 	private boolean identificarFecha;
 	private String fecha;
 	private boolean identificarClaseVehi;
@@ -53,6 +55,8 @@ public class JsonGsonProcessing
 	private String tipoServi;
 	private boolean identificarInfra;
 	private String infra;
+	private boolean identificarMedioDete;
+	private String medioDete;
 	
 	
 	
@@ -86,6 +90,8 @@ public class JsonGsonProcessing
 		tipoServi = "";
 		identificarInfra = false;
 		infra = "";
+		identificarMedioDete = false;
+		medioDete = "";
 		identificarLocalidad = false;
 		localidad = "";
 		identificarLongitud = false;
@@ -229,6 +235,12 @@ public class JsonGsonProcessing
 						identificarInfra = true;
 						System.out.println("OK identificarInfraccion");
 					}
+					else if ( propiedad.equalsIgnoreCase("MEDIO_DETE"))
+					{	// Se identifica la propiedad MEDIO_DETE de un comparendo
+						identificarMedioDete = true;
+						System.out.println("OK identificarMedioDete");
+					}
+					
 					else if ( propiedad.equalsIgnoreCase("LOCALIDAD"))
 					{	// Se identifica la propiedad LOCALIDAD de un comparendo
 						// LOCALIDAD termina la seccion de Propiedades
@@ -284,6 +296,12 @@ public class JsonGsonProcessing
 				infra = valorString;
 				identificarInfra = false;
 				System.out.println("STRING INFRACCION="+infra);				
+			}
+            else if ( identificarMedioDete )
+			{
+				medioDete = valorString;
+				identificarMedioDete = false;
+				System.out.println("STRING MEDIO_DETE="+medioDete);				
 			}
 			else
 			{
