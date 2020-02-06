@@ -32,7 +32,8 @@ public class JsonGsonProcessing
 	
 	// Ejemplo archivo formato GEOJSON
 	private String comparendos_small_GEOJSON_FILE = "./data/comparendos_dei_2018_small.geojson"; // Processing JSONObject
-			
+	
+	
 	private String rutaArchivoJSON;
 	private boolean inicioArrayComparendos;  // identificacion Inicio Array Comparendos
 	private boolean leyendoPropiedades;      // inicio propiedad properties de un comparendo
@@ -44,6 +45,16 @@ public class JsonGsonProcessing
 	private int objectId;					// valor de OBJECTID (NUMBER)
 	private boolean identificarLocalidad;   // identificacion propiedad LOCALIDAD
 	private String localidad;				// valor de LOCALIDAD (STRING)
+	private boolean identificarFecha;
+	private String fecha;
+	private boolean identificarClaseVehi;
+	private String claseVehi;
+	private boolean identificarTipoServi;
+	private String tipoServi;
+	private boolean identificarInfra;
+	private String infra;
+	
+	
 	
 	private boolean identificarLongitud;    // identificacion propiedad coordinates
 	private boolean identificarLatitud;     // identificacion propiedad coordinates
@@ -67,6 +78,14 @@ public class JsonGsonProcessing
 		propiedad = "";
 		identificarObjectId = false;
 		objectId = -1;
+		identificarFecha = false;
+		fecha = "";
+		identificarClaseVehi = false;
+		claseVehi = "";
+		identificarTipoServi = false;
+		tipoServi = "";
+		identificarInfra = false;
+		infra = "";
 		identificarLocalidad = false;
 		localidad = "";
 		identificarLongitud = false;
@@ -190,6 +209,26 @@ public class JsonGsonProcessing
 						identificarObjectId = true;
 						System.out.println("OK identificarObjectId");
 					}
+					else if ( propiedad.equalsIgnoreCase("FECHA_HORA"))
+					{	// Se identifica la propiedad FECHA HORA de un comparendo
+						identificarFecha = true;
+						System.out.println("OK identificarFecha");
+					}
+					else if ( propiedad.equalsIgnoreCase("CLASE_VEHI"))
+					{	// Se identifica la propiedad Clase Vehi de un comparendo
+						identificarClaseVehi = true;
+						System.out.println("OK identificarCLaseVehi");
+					}
+					else if ( propiedad.equalsIgnoreCase("TIPO_SERVI"))
+					{	// Se identifica la propiedad Tipo Servi de un comparendo
+						identificarTipoServi = true;
+						System.out.println("OK identificarTipoServi");
+					}
+					else if ( propiedad.equalsIgnoreCase("INFRACCION"))
+					{	// Se identifica la propiedad INFRACCION de un comparendo
+						identificarInfra = true;
+						System.out.println("OK identificarInfraccion");
+					}
 					else if ( propiedad.equalsIgnoreCase("LOCALIDAD"))
 					{	// Se identifica la propiedad LOCALIDAD de un comparendo
 						// LOCALIDAD termina la seccion de Propiedades
@@ -222,6 +261,30 @@ public class JsonGsonProcessing
 				identificarLocalidad = false;
 				System.out.println("STRING LOCALIDAD="+localidad);				
 			}
+            else if ( identificarFecha )
+			{
+				fecha = valorString;
+				identificarFecha = false;
+				System.out.println("STRING FECHA="+fecha);				
+			}
+            else if ( identificarClaseVehi )
+			{
+				claseVehi = valorString;
+				identificarClaseVehi = false;
+				System.out.println("STRING CLASE_VEHI="+claseVehi);				
+			}
+            else if ( identificarTipoServi)
+			{
+				tipoServi = valorString;
+				identificarTipoServi = false;
+				System.out.println("STRING TIPO_SERVI="+tipoServi);				
+			}
+            else if ( identificarInfra )
+			{
+				infra = valorString;
+				identificarInfra = false;
+				System.out.println("STRING INFRACCION="+infra);				
+			}
 			else
 			{
 				System.out.println("STRING=" + valorString);
@@ -239,8 +302,11 @@ public class JsonGsonProcessing
 			else if ( identificarLongitud )
 			{
 				longitud = valorNumerico;
+				latitud = reader.nextDouble();
 				identificarLongitud = false;
-				System.out.println("NUMBER Longitud= "+longitud);				
+				identificarLatitud = false;
+				System.out.println("NUMBER Longitud= "+longitud);
+				System.out.println("NUMBER Latitud= "+latitud);
 			}
 			else
 			{
@@ -317,8 +383,8 @@ public class JsonGsonProcessing
 	 */
 	public void crearComparendo()
 	{   
-		Comparendo rta = new Comparendo(objectId, localidad, longitud, latitud);
-		System.out.println("Crear comparendo con: ObjectId: " + objectId + ", Localidad: " + localidad + ", (Long: " + longitud + ", Lat: " + latitud + ")");
+		Comparendo rta = new Comparendo(objectId, localidad, longitud, latitud,fecha,claseVehi,tipoServi,infra);
+		System.out.println("Crear comparendo con: ObjectId: " + objectId + ", Localidad: " + localidad + ", (Long: " + longitud + ", Lat: " + latitud + "), Fecha :"+fecha+", Clase Vehiculo :"+claseVehi+", Tipo Servicio : "+tipoServi+", Inraccion : "+infra);
 		
 		leyendoPropiedades = false;
 		leyendoGeometria = false;

@@ -12,6 +12,14 @@ public class Comparendo implements Comparable<Comparendo>
 	 */
 	private String localidad;
 	
+	private String fecha;
+	
+	private String claseVehi;
+	
+	private String tipoServi;
+	
+	private String infrac;
+
 	/**
 	 * Coordenada 1, longuitud
 	 */
@@ -22,12 +30,34 @@ public class Comparendo implements Comparable<Comparendo>
 	 */
 	private double latitud;
 	
-	public Comparendo(int ob, String loc, double lon, double lat)
+	public Comparendo(int ob, String loc, double lon, double lat, String pFecha, String pClaseVehi, String pTipoServi, String pInfra)
 	{
 		objectId = ob;
 		localidad = loc;
 		longuitud = lon;
 		latitud = lat;
+		
+		fecha = pFecha;
+		claseVehi = pClaseVehi;
+		tipoServi = pTipoServi;
+		infrac = pInfra;
+	}
+	
+	public String darFecha()
+	{
+		return fecha;
+	}
+	public String darClaseVehi()
+	{
+		return claseVehi;
+	}
+	public String darTipoServi()
+	{
+		return tipoServi;
+	}
+	public String darInfraccion()
+	{
+		return infrac;
 	}
 	
 	/**

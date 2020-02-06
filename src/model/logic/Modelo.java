@@ -47,7 +47,7 @@ public class Modelo {
 	 */
 	public Comparendo buscar(Integer dato)
 	{
-		Comparendo nuevo = new Comparendo(dato, "",0, 0);
+		Comparendo nuevo = new Comparendo(dato, "",0, 0,"","","","");
 		return datos.buscar(nuevo);
 	}
 	

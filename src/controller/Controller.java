@@ -42,14 +42,15 @@ public class Controller {
 			switch(option){
 				case 1:
 					view.printMessage("--------- \nSe realiza la carga de los comparendos: ");
-					String ruta = "./data/comparendos_dei_2018.geojson";
+					String ruta = "./data/comparendos_dei_2018.geojson";   // Comparendos totales
+					//String ruta = "./data/comparendos_dei_2018_small.geojson";     //Prueba comparendos
 					modelo.cargarDatos(ruta);
 				    view.printMessage("\nLista creada....");
 				    view.printMessage("\nNumero actual de comparendos " + modelo.darTamano());
 				    Comparendo prim = modelo.darPrimero();
-				    view.printMessage("\nPrimer comparendo es: \nOnjectId ="+prim.darObjectId()+", localidad = "+prim.darLocalidad()+", longuitud = "+prim.darLonguitud()+", latitud = "+prim.darLatitud());
+				    view.printMessage("\nPrimer comparendo es: \nOnjectId ="+prim.darObjectId()+", localidad = "+prim.darLocalidad()+", longuitud = "+prim.darLonguitud()+", latitud = "+prim.darLatitud()+", Fecha :"+prim.darFecha()+", Clase Vehiculo :"+prim.darClaseVehi()+", Tipo Servicio : "+prim.darTipoServi()+", Inraccion : "+prim.darInfraccion());
 				    Comparendo ult = modelo.darUltimo();
-				    view.printMessage("\nEL ultimo comparendo es: \nOnjectId ="+ult.darObjectId()+", localidad = "+ult.darLocalidad()+", longuitud = "+ult.darLonguitud()+", latitud = "+ult.darLatitud()+"\n------------");
+				    view.printMessage("\nEL ultimo comparendo es: \nOnjectId ="+ult.darObjectId()+", localidad = "+ult.darLocalidad()+", longuitud = "+ult.darLonguitud()+", latitud = "+ult.darLatitud()+", Fecha :"+ult.darFecha()+", Clase Vehiculo :"+ult.darClaseVehi()+", Tipo Servicio : "+ult.darTipoServi()+", Inraccion : "+ult.darInfraccion()+"\n------------");
 					break;
 
 				case 2:
@@ -62,7 +63,7 @@ public class Controller {
 					}
 					else
 					{
-						view.printMessage("\nComparendo encontrado:\nOnjectId ="+comp.darObjectId()+", localidad = "+comp.darLocalidad()+", longuitud = "+comp.darLonguitud()+", latitud = "+comp.darLatitud()+"\n---------");
+						view.printMessage("\nComparendo encontrado:\nOnjectId ="+comp.darObjectId()+", localidad = "+comp.darLocalidad()+", longuitud = "+comp.darLonguitud()+", latitud = "+comp.darLatitud()+", Fecha :"+comp.darFecha()+", Clase Vehiculo :"+comp.darClaseVehi()+", Tipo Servicio : "+comp.darTipoServi()+", Inraccion : "+comp.darInfraccion()+"\n---------");
 					}
 											
 					break;
