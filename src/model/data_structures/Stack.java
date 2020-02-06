@@ -43,11 +43,7 @@ public class  Stack<T extends Comparable<T>> implements IStack<T> {
            tamanoAct++;
    }
 
-	public int darCapacidad() {
-		return tamanoMax;
-	}
-
-	public int darTamano() {
+	public int size() {
 		return tamanoAct;
 	}
 

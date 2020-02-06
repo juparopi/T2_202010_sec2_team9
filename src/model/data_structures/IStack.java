@@ -6,7 +6,7 @@ public interface  IStack<T extends Comparable<T>>{
 	 * Retornar el numero de elementos presentes en el stack
 	 * @return
 	 */
-	int darTamano( );
+	int size( );
 	
 	/**
 	 * Agregar un dato al final del stack 
