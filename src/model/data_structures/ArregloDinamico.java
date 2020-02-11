@@ -105,5 +105,10 @@ public class  ArregloDinamico<T extends Comparable<T>> implements IArregloDinami
 			}
 			return rta;
 		}
+		
+		public void eliminarUltimo()
+		{
+			elementos[tamanoAct-1] = null;
+		}
 
 }
