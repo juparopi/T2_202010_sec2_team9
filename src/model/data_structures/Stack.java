@@ -46,6 +46,7 @@ public class Stack<T extends Comparable<T>> implements IStack<T> {
 		T rta = null;
 		rta = elementos.darElemento(tamanoAct-1);
 		elementos.eliminarUltimo();
+		tamanoAct--;
 		return rta;
 	}
 
@@ -54,7 +55,14 @@ public class Stack<T extends Comparable<T>> implements IStack<T> {
 	}
 
 	public T peek() {
-		return elementos.darElemento(tamanoAct - 1);
+		if(tamanoAct == 0)
+		{
+			return null;
+		}
+		else
+		{
+			return elementos.darElemento(tamanoAct - 1);
+		}
 	}
 
 }
