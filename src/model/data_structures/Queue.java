@@ -71,7 +71,7 @@ public class Queue <T extends Comparable<T>> implements IQueue<T>{
 	
 	public boolean isEmpty(){
 		boolean ans = false;
-		if(primero != null){
+		if(tamano == 0){
 			ans = true;
 		}
 		return ans;

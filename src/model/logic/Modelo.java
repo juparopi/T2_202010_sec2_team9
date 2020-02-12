@@ -1,5 +1,8 @@
 package model.logic;
 
+import com.sun.media.sound.AlawCodec;
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
 import model.data_structures.ArregloDinamico;
 import model.data_structures.IArregloDinamico;
 import model.data_structures.IListaEncadenada;
@@ -50,18 +53,37 @@ public class Modelo {
 	
 	public IQueue<Comparendo> requerimiento2()
 	{
-		IQueue<Comparendo> rta = new Queue();
+		IQueue<Comparendo> maximos = new Queue();
 		IQueue<Comparendo> analizada = new Queue();
 		int max = 0;
-		String infraccionMax = "";
-		int numAna = 0;
-		String infraccionAna = "";
+		int numAna = 1;
+		String infraccionAna = queue.peek().darElemento().darInfraccion();
 		while(queue.isEmpty() == false)
 		{
 			Comparendo comparendo = queue.dequeue();
-			if()
+			if (comparendo.darInfraccion().equals(infraccionAna))
+			{
+				analizada.enqueue(comparendo);
+				numAna++;
+			}
+			else 
+			{
+				if(numAna>max)
+				{
+					maximos = analizada;
+					max = numAna;
+					analizada = new Queue();
+					infraccionAna = comparendo.darInfraccion();
+					analizada.enqueue(comparendo);
+					numAna++;
+				}
+			}
 		}
-		return rta;
+		if(numAna>max)
+		{
+			maximos = analizada;
+		}
+		return maximos;
 	}
 
 }

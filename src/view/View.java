@@ -15,7 +15,7 @@ public class View
 		public void printMenu()
 		{
 			System.out.println("1. Cargar comparendos");
-			System.out.println("2. Consultar comparendo");
+			System.out.println("2. Cluster de comparendos");
 			System.out.println("Dar el numero de opcion a resolver, luego oprimir tecla Return: (e.g., 1):");
 		}
 

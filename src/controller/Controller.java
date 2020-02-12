@@ -6,6 +6,7 @@ import javax.swing.JFileChooser;
 
 import java.io.*;
 
+import model.data_structures.IQueue;
 import model.logic.Comparendo;
 import model.logic.Modelo;
 import view.View;
@@ -49,24 +50,19 @@ public class Controller {
 				    view.printMessage("\nQueue creada....");
 				    view.printMessage("\nNumero actual de comparendos " + modelo.darQueue().size());
 				    Comparendo prim = modelo.darQueue().peek().darElemento();
-				    view.printMessage("\nPrimer comparendo de la cola es: \nOnjectId ="+prim.darObjectId()+", localidad = "+prim.darLocalidad()+", longuitud = "+prim.darLonguitud()+", latitud = "+prim.darLatitud()+", Fecha :"+prim.darFecha()+", Clase Vehiculo :"+prim.darClaseVehi()+", Tipo Servicio : "+prim.darTipoServi()+", Inraccion : "+prim.darInfraccion());
+				    view.printMessage("\nPrimer comparendo de la cola es: \nOnjectId ="+prim.darObjectId()+", localidad = "+prim.darLocalidad()+", longuitud = "+prim.darLonguitud()+", latitud = "+prim.darLatitud()+", Fecha :"+prim.darFecha()+", Clase Vehiculo :"+prim.darClaseVehi()+", Tipo Servicio : "+prim.darTipoServi()+", Infraccion : "+prim.darInfraccion());
 				    Comparendo ult = modelo.darStack().peek();
-				    view.printMessage("\nEL ultimo comparendo en el stack es: \nOnjectId ="+ult.darObjectId()+", localidad = "+ult.darLocalidad()+", longuitud = "+ult.darLonguitud()+", latitud = "+ult.darLatitud()+", Fecha :"+ult.darFecha()+", Clase Vehiculo :"+ult.darClaseVehi()+", Tipo Servicio : "+ult.darTipoServi()+", Inraccion : "+ult.darInfraccion()+"\n------------");
+				    view.printMessage("\nEL ultimo comparendo en el stack es: \nOnjectId ="+ult.darObjectId()+", localidad = "+ult.darLocalidad()+", longuitud = "+ult.darLonguitud()+", latitud = "+ult.darLatitud()+", Fecha :"+ult.darFecha()+", Clase Vehiculo :"+ult.darClaseVehi()+", Tipo Servicio : "+ult.darTipoServi()+", Infraccion : "+ult.darInfraccion()+"\n------------");
 					break;
 
 				case 2:
-					view.printMessage("--------- \nDar ObjectID que desea buscar: ");
-					dato = lector.nextInt();
-					Comparendo comp = modelo.buscar(dato);
-					if(comp == null)
+					IQueue<Comparendo> cola = modelo.requerimiento2();
+					view.printMessage("\nEl numero maximo de comparendos seguidos con la misma infraccion es "+cola.size()+" y son:");
+					for(int i = 0; i< cola.size();i++)
 					{
-						view.printMessage("\nNo existe un comparendo con ese ObjectId\n---------");
+						Comparendo comp = cola.dequeue();
+						view.printMessage("\n Infraccion : "+comp.darInfraccion()+", OnjectId ="+comp.darObjectId()+", Fecha :"+comp.darFecha()+", Clase Vehiculo :"+comp.darClaseVehi()+", Tipo Servicio : "+comp.darTipoServi()+", Localidad : "+comp.darLocalidad());
 					}
-					else
-					{
-						view.printMessage("\nComparendo encontrado:\nOnjectId ="+comp.darObjectId()+", localidad = "+comp.darLocalidad()+", longuitud = "+comp.darLonguitud()+", latitud = "+comp.darLatitud()+", Fecha :"+comp.darFecha()+", Clase Vehiculo :"+comp.darClaseVehi()+", Tipo Servicio : "+comp.darTipoServi()+", Inraccion : "+comp.darInfraccion()+"\n---------");
-					}
-											
 					break;
 
 			}
