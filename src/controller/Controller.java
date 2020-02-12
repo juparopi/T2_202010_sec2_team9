@@ -42,15 +42,16 @@ public class Controller {
 			switch(option){
 				case 1:
 					view.printMessage("--------- \nSe realiza la carga de los comparendos: ");
-					String ruta = "./data/comparendos_dei_2018.geojson";   // Comparendos totales
-					//String ruta = "./data/comparendos_dei_2018_small.geojson";     //Prueba comparendos
+					//String ruta = "./data/comparendos_dei_2018.geojson";   // Comparendos totales
+					String ruta = "./data/comparendos_dei_2018_small.geojson";     //Prueba comparendos
 					modelo.cargarDatos(ruta);
-				    view.printMessage("\nLista creada....");
-				    view.printMessage("\nNumero actual de comparendos " + modelo.darTamano());
-				    Comparendo prim = modelo.darPrimero();
-				    view.printMessage("\nPrimer comparendo es: \nOnjectId ="+prim.darObjectId()+", localidad = "+prim.darLocalidad()+", longuitud = "+prim.darLonguitud()+", latitud = "+prim.darLatitud()+", Fecha :"+prim.darFecha()+", Clase Vehiculo :"+prim.darClaseVehi()+", Tipo Servicio : "+prim.darTipoServi()+", Inraccion : "+prim.darInfraccion());
-				    Comparendo ult = modelo.darUltimo();
-				    view.printMessage("\nEL ultimo comparendo es: \nOnjectId ="+ult.darObjectId()+", localidad = "+ult.darLocalidad()+", longuitud = "+ult.darLonguitud()+", latitud = "+ult.darLatitud()+", Fecha :"+ult.darFecha()+", Clase Vehiculo :"+ult.darClaseVehi()+", Tipo Servicio : "+ult.darTipoServi()+", Inraccion : "+ult.darInfraccion()+"\n------------");
+				    view.printMessage("\nStack creado....");
+				    view.printMessage("\nQueue creada....");
+				    view.printMessage("\nNumero actual de comparendos " + modelo.darQueue().size());
+				    Comparendo prim = modelo.darQueue().peek().darElemento();
+				    view.printMessage("\nPrimer comparendo de la cola es: \nOnjectId ="+prim.darObjectId()+", localidad = "+prim.darLocalidad()+", longuitud = "+prim.darLonguitud()+", latitud = "+prim.darLatitud()+", Fecha :"+prim.darFecha()+", Clase Vehiculo :"+prim.darClaseVehi()+", Tipo Servicio : "+prim.darTipoServi()+", Inraccion : "+prim.darInfraccion());
+				    Comparendo ult = modelo.darStack().peek();
+				    view.printMessage("\nEL ultimo comparendo en el stack es: \nOnjectId ="+ult.darObjectId()+", localidad = "+ult.darLocalidad()+", longuitud = "+ult.darLonguitud()+", latitud = "+ult.darLatitud()+", Fecha :"+ult.darFecha()+", Clase Vehiculo :"+ult.darClaseVehi()+", Tipo Servicio : "+ult.darTipoServi()+", Inraccion : "+ult.darInfraccion()+"\n------------");
 					break;
 
 				case 2:

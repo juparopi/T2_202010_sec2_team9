@@ -3,7 +3,11 @@ package model.logic;
 import model.data_structures.ArregloDinamico;
 import model.data_structures.IArregloDinamico;
 import model.data_structures.IListaEncadenada;
+import model.data_structures.IQueue;
+import model.data_structures.IStack;
 import model.data_structures.ListaEncadenada;
+import model.data_structures.Queue;
+import model.data_structures.Stack;
 
 /**
  * Definicion del modelo del mundo
@@ -13,7 +17,8 @@ public class Modelo {
 	/**
 	 * Atributos del modelo del mundo
 	 */
-	private IListaEncadenada<Comparendo> datos;
+	private IStack<Comparendo> stack;
+	private IQueue<Comparendo> queue;
 	
 	
 	/**
@@ -21,53 +26,26 @@ public class Modelo {
 	 */
 	public Modelo()
 	{
-		datos = new ListaEncadenada<Comparendo>();
+		queue = new Queue();
+		stack = new Stack();
 	}
 	
 	public void cargarDatos(String ruta)
 	{
 		JsonGsonProcessing objetoJsonGson = new JsonGsonProcessing( ruta);
-		objetoJsonGson.iniciarLectura(objetoJsonGson, datos);
-		datos = objetoJsonGson.darLista();
+		objetoJsonGson.iniciarLectura(objetoJsonGson, stack,queue);
+		stack = objetoJsonGson.darStack();
+		queue = objetoJsonGson.darQueue();
 	}
 	
-	/**
-	 * Servicio de consulta de numero de elementos presentes en el modelo 
-	 * @return numero de elementos presentes en el modelo
-	 */
-	public int darTamano()
+	public IStack<Comparendo> darStack()
 	{
-		return datos.darTamano();
-	}
-
-	/**
-	 * Requerimiento buscar dato
-	 * @param dato Dato a buscar
-	 * @return dato encontrado
-	 */
-	public Comparendo buscar(Integer dato)
-	{
-		Comparendo nuevo = new Comparendo(dato, "",0, 0,"","","","");
-		return datos.buscar(nuevo);
+		return stack;
 	}
 	
-	/**
-	 * Retorna el ultimo comparendo en agregarse a la lista
-	 * @return ultimo comparendo agregado
-	 */
-	public Comparendo darUltimo()
+	public IQueue<Comparendo> darQueue()
 	{
-		return datos.darUltimo().darElemento();
+		return queue;
 	}
-	
-	/**
-	 * Retorna el primer comparendo en ser agregado a la lista
-	 * @return primer comparendo agregado
-	 */
-	public Comparendo darPrimero()
-	{
-		return datos.darPrimero().darElemento();
-	}
-
 
 }

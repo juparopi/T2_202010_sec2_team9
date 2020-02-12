@@ -18,8 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 
-import model.data_structures.IListaEncadenada;
-import model.data_structures.ListaEncadenada;
+import model.data_structures.*;
 	 
 public class JsonGsonProcessing
 {
@@ -67,7 +66,8 @@ public class JsonGsonProcessing
 	
 	
 	
-	private IListaEncadenada<Comparendo> lista;
+	private IStack<Comparendo> stack;
+	private IQueue<Comparendo> queue;
 	
 	
 	/** Metodo constructor */
@@ -407,17 +407,23 @@ public class JsonGsonProcessing
 		leyendoPropiedades = false;
 		leyendoGeometria = false;
 		crearObjComparendo = false;
-		lista.agregar(rta);
+		stack.push(rta);
+		queue.enqueue(rta);;
 	}
 	
-	public IListaEncadenada<Comparendo> darLista()
+	public IStack<Comparendo> darStack()
 	{
-		return lista;
+		return stack;
+	}
+	public IQueue<Comparendo> darQueue()
+	{
+		return queue;
 	}
 	
-	public void iniciarLectura(JsonGsonProcessing objetoJsonGson, IListaEncadenada<Comparendo> pLista)
+	public void iniciarLectura(JsonGsonProcessing objetoJsonGson, IStack<Comparendo> pStack, IQueue<Comparendo> pQueue)
 	{
-		lista =pLista;
+		stack = pStack;
+		queue = pQueue;
 		// Inicializar el objeto de procesamiento con el nombre del archivo JSON o comparendos GEOJSON 
 
 		objetoJsonGson.processingJSONFile();
