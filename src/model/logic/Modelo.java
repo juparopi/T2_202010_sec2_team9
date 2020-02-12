@@ -47,5 +47,21 @@ public class Modelo {
 	{
 		return queue;
 	}
+	
+	public IQueue<Comparendo> requerimiento2()
+	{
+		IQueue<Comparendo> rta = new Queue();
+		IQueue<Comparendo> analizada = new Queue();
+		int max = 0;
+		String infraccionMax = "";
+		int numAna = 0;
+		String infraccionAna = "";
+		while(queue.isEmpty() == false)
+		{
+			Comparendo comparendo = queue.dequeue();
+			if()
+		}
+		return rta;
+	}
 
 }

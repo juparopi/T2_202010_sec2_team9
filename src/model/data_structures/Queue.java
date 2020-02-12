@@ -40,7 +40,7 @@ public class Queue <T extends Comparable<T>> implements IQueue<T>{
 	}
 
 	@Override
-	public T dequeue(T dato) {
+	public T dequeue() {
 		// TODO Auto-generated method stub
 		T aDevolver = null;
 		if(primero != null){

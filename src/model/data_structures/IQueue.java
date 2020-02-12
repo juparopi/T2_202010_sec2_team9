@@ -10,7 +10,7 @@ public interface IQueue <T extends Comparable<T>>{
 	
 	public void enqueue(T dato);
 	
-	public T dequeue( T dato);
+	public T dequeue( );
 	
 	public T buscar(T dato);
 	
