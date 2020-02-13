@@ -6,6 +6,13 @@ public class Queue <T extends Comparable<T>> implements IQueue<T>{
 	private int tamano;
 	private NodoLista<T> primero;
 	private NodoLista<T> ultimo;
+	
+	public Queue(){
+		tamano = 0;
+		primero = null;
+		ultimo = null;
+	}
+	
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
@@ -13,15 +20,15 @@ public class Queue <T extends Comparable<T>> implements IQueue<T>{
 	}
 
 	@Override
-	public NodoLista<T> peek() {
+	public T peek() {
 		// TODO Auto-generated method stub
-		return primero;
+		return primero.darElemento();
 	}
 
 	@Override
-	public NodoLista<T> darUltimo() {
+	public T darUltimo() {
 		// TODO Auto-generated method stub
-		return ultimo;
+		return ultimo.darElemento();
 	}
 
 	@Override

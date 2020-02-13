@@ -49,7 +49,7 @@ public class Controller {
 				    view.printMessage("\nStack creado....");
 				    view.printMessage("\nQueue creada....");
 				    view.printMessage("\nNumero actual de comparendos " + modelo.darQueue().size());
-				    Comparendo prim = modelo.darQueue().peek().darElemento();
+				    Comparendo prim = modelo.darQueue().peek();
 				    view.printMessage("\nPrimer comparendo de la cola es: \nOnjectId ="+prim.darObjectId()+", localidad = "+prim.darLocalidad()+", longuitud = "+prim.darLonguitud()+", latitud = "+prim.darLatitud()+", Fecha :"+prim.darFecha()+", Clase Vehiculo :"+prim.darClaseVehi()+", Tipo Servicio : "+prim.darTipoServi()+", Infraccion : "+prim.darInfraccion());
 				    Comparendo ult = modelo.darStack().peek();
 				    view.printMessage("\nEL ultimo comparendo en el stack es: \nOnjectId ="+ult.darObjectId()+", localidad = "+ult.darLocalidad()+", longuitud = "+ult.darLonguitud()+", latitud = "+ult.darLatitud()+", Fecha :"+ult.darFecha()+", Clase Vehiculo :"+ult.darClaseVehi()+", Tipo Servicio : "+ult.darTipoServi()+", Infraccion : "+ult.darInfraccion()+"\n------------");

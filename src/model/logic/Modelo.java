@@ -57,7 +57,7 @@ public class Modelo {
 		IQueue<Comparendo> analizada = new Queue();
 		int max = 0;
 		int numAna = 1;
-		String infraccionAna = queue.peek().darElemento().darInfraccion();
+		String infraccionAna = queue.peek().darInfraccion();
 		while(queue.isEmpty() == false)
 		{
 			Comparendo comparendo = queue.dequeue();

@@ -4,9 +4,9 @@ public interface IQueue <T extends Comparable<T>>{
 	
 	public int size();
 	
-	public NodoLista<T> peek();
+	public T peek();
 	
-	public NodoLista<T> darUltimo();
+	public T darUltimo();
 	
 	public void enqueue(T dato);
 	
