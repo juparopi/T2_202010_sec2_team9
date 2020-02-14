@@ -85,5 +85,23 @@ public class Modelo {
 		}
 		return maximos;
 	}
+	
+	public IStack<Comparendo> requerimiento3(int n, String infrac){
+		IStack<Comparendo> analizar = stack;
+		IStack<Comparendo> analizada = new Stack();
+		int i = 0;
+		while(i < n && !analizar.isEmpty()){
+			Comparendo c = analizar.pop();
+			if(c.darInfraccion().equalsIgnoreCase(infrac)){
+				analizada.push(c);
+				i ++;
+				
+			}
+		}
+		
+		return analizada;
+		
+		
+	}
 
 }

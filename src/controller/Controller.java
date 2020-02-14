@@ -7,6 +7,7 @@ import javax.swing.JFileChooser;
 import java.io.*;
 
 import model.data_structures.IQueue;
+import model.data_structures.IStack;
 import model.logic.Comparendo;
 import model.logic.Modelo;
 import view.View;
@@ -64,6 +65,20 @@ public class Controller {
 						view.printMessage("\n Infraccion : "+comp.darInfraccion()+", OnjectId ="+comp.darObjectId()+", Fecha :"+comp.darFecha()+", Clase Vehiculo :"+comp.darClaseVehi()+", Tipo Servicio : "+comp.darTipoServi()+", Localidad : "+comp.darLocalidad());
 					}
 					break;
+					
+				case 3:
+					view.printMessage("----------\n Escriba el tipo de infracción");
+					String infrac =lector.next();
+					view.printMessage("----------\n Escriba la cantidad de comparendos a encontrar.");
+					int n = lector.nextInt();
+					IStack<Comparendo> stack2 = modelo.requerimiento3(n, infrac);
+					view.printMessage("----------\nEl número de comparendos encontrados es " + stack2.size() + ". Y estos son:");
+					for(int i = 0; i < stack2.size(); i++){
+						Comparendo c = stack2.pop();
+						view.printMessage("\n Infraccion : "+c.darInfraccion()+", OnjectId ="+c.darObjectId()+", Fecha :"+c.darFecha()+", Clase Vehiculo :"+c.darClaseVehi()+", Tipo Servicio : "+c.darTipoServi()+", Localidad : "+c.darLocalidad());
+						
+					}
+					
 
 			}
 		}
