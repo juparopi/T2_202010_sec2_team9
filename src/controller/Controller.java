@@ -44,8 +44,8 @@ public class Controller {
 			switch(option){
 				case 1:
 					view.printMessage("--------- \nSe realiza la carga de los comparendos: ");
-					//String ruta = "./data/comparendos_dei_2018.geojson";   // Comparendos totales
-					String ruta = "./data/comparendos_dei_2018_small.geojson";     //Prueba comparendos
+					String ruta = "./data/comparendos_dei_2018.geojson";   // Comparendos totales
+					//String ruta = "./data/comparendos_dei_2018_small.geojson";     //Prueba comparendos
 					modelo.cargarDatos(ruta);
 				    view.printMessage("\nStack creado....");
 				    view.printMessage("\nQueue creada....");
@@ -67,12 +67,12 @@ public class Controller {
 					break;
 					
 				case 3:
-					view.printMessage("----------\n Escriba el tipo de infracción");
+					view.printMessage("----------\n Escriba el tipo de infracciÃ³n");
 					String infrac =lector.next();
 					view.printMessage("----------\n Escriba la cantidad de comparendos a encontrar.");
 					int n = lector.nextInt();
 					IStack<Comparendo> stack2 = modelo.requerimiento3(n, infrac);
-					view.printMessage("----------\nEl número de comparendos encontrados es " + stack2.size() + ". Y estos son:");
+					view.printMessage("----------\nEl nÃºmero de comparendos encontrados es " + stack2.size() + ". Y estos son:");
 					for(int i = 0; i < stack2.size(); i++){
 						Comparendo c = stack2.pop();
 						view.printMessage("\n Infraccion : "+c.darInfraccion()+", OnjectId ="+c.darObjectId()+", Fecha :"+c.darFecha()+", Clase Vehiculo :"+c.darClaseVehi()+", Tipo Servicio : "+c.darTipoServi()+", Localidad : "+c.darLocalidad());
